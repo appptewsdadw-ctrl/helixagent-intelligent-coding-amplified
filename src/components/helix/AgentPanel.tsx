@@ -291,7 +291,7 @@ export function AgentPanel() {
               key={a.id}
               className="flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-surface px-2 py-0.5"
             >
-              <StatusDot status={agentState[a.id].status} />
+              <StatusDot status={agentState[a.id]?.status ?? "idle"} />
               <span className="text-[11px]">{a.name}</span>
             </span>
           ))}

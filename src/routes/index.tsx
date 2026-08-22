@@ -41,20 +41,20 @@ function WorkspaceShell() {
       <TitleBar />
       <div className="flex min-h-0 flex-1">
         <ActivityRail />
-        <ResizablePanelGroup direction="horizontal" className="min-h-0 flex-1">
-          <ResizablePanel defaultSize={19} minSize={12} maxSize={32}>
+        <ResizablePanelGroup orientation="horizontal" className="min-h-0 flex-1">
+          <ResizablePanel defaultSize="19%" minSize="12%" maxSize="32%">
             <SidebarPanel />
           </ResizablePanel>
           <ResizableHandle />
-          <ResizablePanel defaultSize={53} minSize={30}>
-            <ResizablePanelGroup direction="vertical">
-              <ResizablePanel defaultSize={bottomOpen ? 66 : 100} minSize={25}>
+          <ResizablePanel defaultSize="53%" minSize="30%">
+            <ResizablePanelGroup orientation="vertical">
+              <ResizablePanel defaultSize={bottomOpen ? "66%" : "100%"} minSize="25%">
                 <EditorPane />
               </ResizablePanel>
               {bottomOpen && (
                 <>
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={34} minSize={12}>
+                  <ResizablePanel defaultSize="34%" minSize="12%">
                     <TerminalPane />
                   </ResizablePanel>
                 </>
@@ -62,7 +62,7 @@ function WorkspaceShell() {
             </ResizablePanelGroup>
           </ResizablePanel>
           <ResizableHandle />
-          <ResizablePanel defaultSize={28} minSize={18} maxSize={44}>
+          <ResizablePanel defaultSize="28%" minSize="18%" maxSize="44%">
             <AgentPanel />
           </ResizablePanel>
         </ResizablePanelGroup>

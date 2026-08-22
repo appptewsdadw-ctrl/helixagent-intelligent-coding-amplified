@@ -51,13 +51,13 @@ export function CommandPalette() {
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="AI actions">
-          {[
+          {([
             ["Explain current file", "Explain the current file and its responsibilities"],
             ["Generate tests", "Generate tests for the current module"],
             ["Refactor selection", "Refactor the selected code for clarity"],
             ["Review changes", "Review the working tree changes"],
             ["Generate commit message", "Generate a commit message for staged changes"],
-          ].map(([label, prompt]) => (
+          ] as Array<[string, string]>).map(([label, prompt]) => (
             <CommandItem
               key={label}
               value={`ai ${label}`}

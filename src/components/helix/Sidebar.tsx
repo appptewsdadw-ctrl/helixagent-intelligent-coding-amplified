@@ -92,7 +92,7 @@ function Tree({ nodes, depth = 0 }: { nodes: FileNode[]; depth?: number }) {
                   n.gitStatus === "untracked" && "text-muted-foreground",
                 )}
               >
-                {n.gitStatus[0].toUpperCase()}
+                {n.gitStatus.charAt(0).toUpperCase()}
               </span>
             )}
           </button>

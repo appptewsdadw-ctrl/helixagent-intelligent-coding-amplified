@@ -214,7 +214,15 @@ export function HelixProvider({ children }: { children: ReactNode }) {
   );
 
   const setAgent = useCallback((agentId: string, patch: Partial<AgentRuntimeState>) => {
-    setAgentState((s) => ({ ...s, [agentId]: { ...s[agentId], ...patch } }));
+    setAgentState((s) => {
+      const prev: AgentRuntimeState = s[agentId] ?? {
+        agentId,
+        status: "idle",
+        tokensUsed: 0,
+        memory: [],
+      };
+      return { ...s, [agentId]: { ...prev, ...patch } };
+    });
   }, []);
 
   const runTask = useCallback(
@@ -271,7 +279,7 @@ export function HelixProvider({ children }: { children: ReactNode }) {
             });
             setAgent(sub.agentId, {
               status: "success",
-              currentAction: undefined,
+              currentAction: "",
               tokensUsed: (agentState[sub.agentId]?.tokensUsed ?? 0) + 1200 + i * 400,
             });
             setMessages((m) => [

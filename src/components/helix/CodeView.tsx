@@ -4,7 +4,7 @@ import { useMemo } from "react";
 const KEYWORDS =
   /\b(import|from|export|const|let|var|function|return|async|await|class|interface|type|extends|implements|new|if|else|for|of|in|try|catch|throw|private|readonly|public|constructor|this|null|undefined|true|false)\b/;
 
-type Tok = { t: string; c?: string };
+type Tok = { t: string; c?: string | undefined };
 
 function tokenize(line: string): Tok[] {
   const out: Tok[] = [];

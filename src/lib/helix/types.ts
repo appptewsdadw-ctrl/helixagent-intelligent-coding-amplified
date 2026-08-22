@@ -17,7 +17,7 @@ export interface ModelDescriptor {
   contextWindow: number;
   /** rough capability tags used by the orchestrator when routing subtasks */
   capabilities: Array<"code" | "reasoning" | "fast" | "long-context" | "vision" | "embedding">;
-  sizeGb?: number;
+  sizeGb?: number | undefined;
 }
 
 export interface ModelParameters {
@@ -35,7 +35,7 @@ export interface ProviderConfig {
   label: string;
   kind: "local" | "remote";
   baseUrl: string;
-  apiKeyRef?: string;
+  apiKeyRef?: string | undefined;
   status: ProviderStatus;
   autoDiscover: boolean;
   models: ModelDescriptor[];
@@ -49,7 +49,7 @@ export interface ModelProviderAdapter {
     model: string;
     messages: Array<{ role: "system" | "user" | "assistant" | "tool"; content: string }>;
     params: ModelParameters;
-    signal?: AbortSignal;
+    signal?: AbortSignal | undefined;
   }): AsyncIterable<string>;
 }
 
@@ -72,10 +72,10 @@ export interface ToolCall {
   toolId: string;
   agentId: string;
   input: string;
-  output?: string;
+  output?: string | undefined;
   status: "pending-approval" | "running" | "success" | "error" | "denied";
   startedAt: number;
-  durationMs?: number;
+  durationMs?: number | undefined;
 }
 
 /* ------------------------------------------------------------------ agents */
@@ -119,7 +119,7 @@ export interface AgentDefinition {
 export interface AgentRuntimeState {
   agentId: string;
   status: AgentStatus;
-  currentAction?: string;
+  currentAction?: string | undefined;
   tokensUsed: number;
   memory: string[];
 }
@@ -136,8 +136,8 @@ export interface SubTask {
   detail: string;
   toolCalls: ToolCall[];
   files: string[];
-  startedAt?: number;
-  durationMs?: number;
+  startedAt?: number | undefined;
+  durationMs?: number | undefined;
 }
 
 export interface OrchestratedTask {
@@ -154,10 +154,10 @@ export interface FileNode {
   path: string;
   name: string;
   kind: "file" | "dir";
-  language?: string;
-  children?: FileNode[];
-  gitStatus?: "modified" | "added" | "deleted" | "untracked";
-  content?: string;
+  language?: string | undefined;
+  children?: FileNode[] | undefined;
+  gitStatus?: "modified" | "added" | "deleted" | "untracked" | undefined;
+  content?: string | undefined;
 }
 
 export interface ProjectIntelligence {
@@ -200,7 +200,7 @@ export interface TerminalSession {
   id: string;
   name: string;
   cwd: string;
-  agentId?: string;
+  agentId?: string | undefined;
   running: boolean;
   lines: TerminalLine[];
 }
@@ -210,10 +210,10 @@ export interface TerminalSession {
 export interface ChatMessage {
   id: string;
   role: "user" | "assistant" | "system";
-  agentId?: string;
+  agentId?: string | undefined;
   content: string;
-  streaming?: boolean;
-  toolCalls?: ToolCall[];
+  streaming?: boolean | undefined;
+  toolCalls?: ToolCall[] | undefined;
 }
 
 export interface ContextItem {
