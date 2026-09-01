@@ -26,7 +26,10 @@ export function Icon({
   name: string;
   className?: string | undefined;
 }) {
-  const map = Icons as unknown as Record<string, ComponentType<{ className?: string }>>;
+  const map = Icons as unknown as Record<
+    string,
+    ComponentType<{ className?: string | undefined }>
+  >;
   const Cmp = map[name] ?? Icons.Circle;
   return <Cmp className={className} />;
 }
